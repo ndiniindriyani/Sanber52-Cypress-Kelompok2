@@ -2,6 +2,9 @@
 
 Kelopmpok 2 
 
-Afiz Ekolaksono : Login
-Nurul Dini Indriyani : Register
+
+Afiz Ekolaksono : Login,
+
+Nurul Dini Indriyani : Register,
+
 Tri Hesti Wahyuningsih : My Account > Edit Account Information
