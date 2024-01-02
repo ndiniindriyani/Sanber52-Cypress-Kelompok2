@@ -11,4 +11,4 @@ Tri Hesti Wahyuningsih (Trihstiwhyungsh): My Account > Edit Account Information,
 
 Taufik Hidayat (ajicimol) : TBA,
 
-Ibnu Setyo Nugroho (ibnusetyon) : TBA.
+Ibnu Setyo Nugroho (ibnusetyon) : My Account > Edit Address.
