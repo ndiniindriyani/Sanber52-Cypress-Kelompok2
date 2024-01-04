@@ -1,6 +1,6 @@
 describe('Verifiy Create Account', () => {
   beforeEach(() => {
-    cy.visit('https://magento.softwaretestingboard.com/')
+    cy.visit('')
     cy.url().should ('eq', 'https://magento.softwaretestingboard.com/')
     cy.get('.panel > .header > :nth-child(3) > a').should('contain.text','Create an Account')
     cy.get('.panel > .header > :nth-child(3) > a').click()
@@ -28,7 +28,7 @@ describe('Verifiy Create Account', () => {
   it('TC002_Verify Create Account Successfully', () => {
     cy.get('#firstname').type('Nurul Dini');
     cy.get('#lastname').type('Indriyani')
-    cy.get('#email_address').type('Testing1145@gmail.com')
+    cy.get('#email_address').type('Testing1151@gmail.com')
     cy.get('#password').type('P@ssw0rd123')
     cy.get('#password-confirmation').type('P@ssw0rd123')
     cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
@@ -38,34 +38,20 @@ describe('Verifiy Create Account', () => {
     cy.get('.block-dashboard-addresses').should ('contain.text','Address Book')
   })
   
+  //try custom commands
  it('TC003_Verify Failed Create Account - Invalid First Name', () => {
-    cy.get('#firstname').type('Testing@123');
-    cy.get('#lastname').type('Indriyani')
-    cy.get('#email_address').type('Testing1117@gmail.com')
-    cy.get('#password').type('P@ssw0rd')
-    cy.get('#password-confirmation').type('P@ssw0rd')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('.message-error').should ('contain.text','First Name is not valid!')
+    cy.createNewAccount('Testing@123', 'Indriyani', 'Testing1117@gmail.com', 'P@ssw0rd', 'P@ssw0rd') 
+    cy.verifyErrorMessage('.message-error','First Name is not valid!')
   })
 
  it('TC004_Verify Failed Create Account - First Name dikosongkan', () => {
-    cy.get('#firstname').type(' ');
-    cy.get('#lastname').type('Indriyani')
-    cy.get('#email_address').type('Testing1118@gmail.com')
-    cy.get('#password').type('P@ssw0rd')
-    cy.get('#password-confirmation').type('P@ssw0rd')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('#firstname-error').should ('contain.text','This is a required field')
+    cy.createNewAccount(' ', 'Indriyani', 'Testing1118@gmail.com', 'P@ssw0rd', 'P@ssw0rd') 
+    cy.verifyErrorMessage('#firstname-error','This is a required field')
   })
 
   it('TC005_Verify Failed Create Account - First Name disii Spesial Karakter', () => {
-    cy.get('#firstname').type('@-?!%-');
-    cy.get('#lastname').type('Indriyani')
-    cy.get('#email_address').type('Testing1119@gmail.com')
-    cy.get('#password').type('P@ssw0rd')
-    cy.get('#password-confirmation').type('P@ssw0rd')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('.message-error').should ('contain.text','First Name is not valid!')
+    cy.createNewAccount('@-?!%-', 'Indriyani', 'Testing1119@gmail.com', 'P@ssw0rd', 'P@ssw0rd') 
+    cy.verifyErrorMessage('.message-error','First Name is not valid!')
   })
 
   it('TC006_Verify Failed Create Account - Invalid Last Name', () => {
