@@ -1,3 +1,5 @@
+import createAccountPage from "../../support/pageObject/Luma/createAccount.page";
+
 describe('Verifiy Create Account', () => {
   beforeEach(() => {
     cy.visit('')
@@ -22,7 +24,7 @@ describe('Verifiy Create Account', () => {
     cy.get('.confirmation > .label > span').should('have.text','Confirm Password')
     cy.get('#password-confirmation').should('be.visible')
     cy.get('#form-validate > .actions-toolbar > div.primary > .action').should('be.visible')
-    cy.screenshot('Create New Customer Account')
+    cy.screenshot('SS_TC001')
   })
 
   it('TC002_Verify Create Account Successfully', () => {
@@ -54,34 +56,35 @@ describe('Verifiy Create Account', () => {
     cy.verifyErrorMessage('.message-error','First Name is not valid!')
   })
 
-  it('TC006_Verify Failed Create Account - Invalid Last Name', () => {
-    cy.get('#firstname').type('Nurul Dini');
-    cy.get('#lastname').type('Testing123@')
-    cy.get('#email_address').type('Testing1123@gmail.com')
-    cy.get('#password').type('P@ssw0rd123')
-    cy.get('#password-confirmation').type('P@ssw0rd123')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('.message-error').should ('contain.text','Last Name is not valid!')
+  //try page object model
+  it.only('TC006_Verify Failed Create Account - Invalid Last Name', () => {
+    cy.get(createAccountPage.firstname).type('Nurul Dini');
+    cy.get(createAccountPage.lastname).type('Testing123@')
+    cy.get(createAccountPage.email).type('Testing1123@gmail.com')
+    cy.get(createAccountPage.password).type('P@ssw0rd123')
+    cy.get(createAccountPage.confirmPassword).type('P@ssw0rd123')
+    createAccountPage.clickSubmitBtn()
+    createAccountPage.verifyErrorMsg1('Last Name is not valid!')
   })
 
-  it('TC007_Verify Failed Create Account - Last Name dikosongkan', () => {
-    cy.get('#firstname').type('Nurul Dini');
-    cy.get('#lastname').type(' ')
-    cy.get('#email_address').type('Testing1124@gmail.com')
-    cy.get('#password').type('P@ssw0rd123')
-    cy.get('#password-confirmation').type('P@ssw0rd123')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('#lastname-error').should ('contain.text','This is a required field')
+  it.only('TC007_Verify Failed Create Account - Last Name dikosongkan', () => {
+    cy.get(createAccountPage.firstname).type('Nurul Dini');
+    cy.get(createAccountPage.lastname).type(' ')
+    cy.get(createAccountPage.email).type('Testing1124@gmail.com')
+    cy.get(createAccountPage.password).type('P@ssw0rd123')
+    cy.get(createAccountPage.confirmPassword).type('P@ssw0rd123')
+    createAccountPage.clickSubmitBtn()
+    createAccountPage.verifyErrorMsg2('This is a required field')
   })
 
-  it('TC008_Verify Failed Create Account - Last Name spesial karakter', () => {
-    cy.get('#firstname').type('Nurul Dini');
-    cy.get('#lastname').type('@-?!%^&')
-    cy.get('#email_address').type('Testing1125@gmail.com')
-    cy.get('#password').type('P@ssw0rd123')
-    cy.get('#password-confirmation').type('P@ssw0rd123')
-    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
-    cy.get('.message-error').should ('contain.text','Last Name is not valid!')
+  it.only('TC008_Verify Failed Create Account - Last Name spesial karakter', () => {
+    cy.get(createAccountPage.firstname).type('Nurul Dini');
+    cy.get(createAccountPage.lastname).type('@-?!%^&')
+    cy.get(createAccountPage.email).type('Testing1125@gmail.com')
+    cy.get(createAccountPage.password).type('P@ssw0rd123')
+    cy.get(createAccountPage.confirmPassword).type('P@ssw0rd123')
+    createAccountPage.clickSubmitBtn()
+    createAccountPage.verifyErrorMsg1('Last Name is not valid!')
   })
 
   it('TC009_Verify Failed Create Account - Email Sudah Terdaftar', () => {
