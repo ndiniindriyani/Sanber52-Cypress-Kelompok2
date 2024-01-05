@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//Custom Command for Create New Account
+Cypress.Commands.add('createNewAccount', (firstname, lastname, email, password, passconfirm) => {
+    cy.get('#firstname').type(firstname);
+    cy.get('#lastname').type(lastname)
+    cy.get('#email_address').type(email)
+    cy.get('#password').type(password)
+    cy.get('#password-confirmation').type(passconfirm)
+    cy.get('#form-validate > .actions-toolbar > div.primary > .action').click()
+}) 
+
+//Custom Command for Verify Text
+Cypress.Commands.add('verifyErrorMessage', (elemen, message) => {
+    cy.get(elemen).should('contain.text', message)
+})
