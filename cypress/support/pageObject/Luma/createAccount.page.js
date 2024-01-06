@@ -7,6 +7,7 @@ class createAccountPage{
   submitBtn ='#form-validate > .actions-toolbar > div.primary > .action'
   errorMsg = '.message-error'
   lastnameError ='#lastname-error'
+  emailError ='#email_address-error'
 
   clickSubmitBtn(){
     cy.get(this.submitBtn).click()
@@ -19,6 +20,11 @@ class createAccountPage{
   verifyErrorMsg2(msg){
     cy.get(this.lastnameError). should('contain.text', msg)
   }
+
+  verifyErrorMsg3(msg){
+    cy.get(this.emailError). should('contain.text', msg)
+  }
+
 }
 
 export default new createAccountPage()
