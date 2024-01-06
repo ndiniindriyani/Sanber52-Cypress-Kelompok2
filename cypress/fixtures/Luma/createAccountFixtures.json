@@ -1,0 +1,18 @@
+{
+    "validFirstName": "Nurul Dini",
+    "validLastName": "Indriyani",
+    "validEmail": "Testing11112@gmail.com",
+    "spasiEmail": " ",
+    "registeredEmail":"Testing1111@gmail.com",
+    "validPassword": "P@ssw0rd123",
+    "invalidFirstName": "Testing@123",
+    "invalidLastName": "@-?!%-",
+    "invalidEmail": "Testing123",
+    "invalidPassword": "T3ST1NG4J4",
+    "errorMessage": {
+        "1": "There is already an account with this email address.", 
+        "2": "Please enter a valid email address (Ex: johndoe@domain.com).",
+        "3": "This is a required field."
+    }
+    
+}
